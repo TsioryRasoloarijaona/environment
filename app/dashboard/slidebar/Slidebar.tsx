@@ -9,6 +9,8 @@ import { FaDatabase } from "react-icons/fa";
 import { GrLogout } from "react-icons/gr";
 import { Center, Heading } from "@chakra-ui/react";
 import { MdDashboardCustomize } from "react-icons/md";
+import { MdAddBox } from "react-icons/md";
+import { GrUserWorker } from "react-icons/gr";
 export default function Slidebar() {
   const router = useRouter();
   const [active, setActive] = useState(0);
@@ -24,9 +26,9 @@ export default function Slidebar() {
       path: "/dashboard/custumer",
     },
     {
-      name: "Tables",
-      icon: <IoAppsSharp className="text-xl" />,
-      path: "/dashboard/tables",
+      name: "Employe",
+      icon: <GrUserWorker className="text-xl" />,
+      path: "/dashboard/forms/employeDetails",
     },
     {
       name: "Map",
