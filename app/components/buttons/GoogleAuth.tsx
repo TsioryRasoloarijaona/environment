@@ -1,7 +1,7 @@
 "use client";
 
 import { StaticImport } from "next/dist/shared/lib/get-img-props";
-import { auth } from "../../storageConfig/config";
+import {auth} from '@/app/storageConfig/config'
 import { Button } from "@chakra-ui/react";
 import { FcGoogle } from "react-icons/fc";
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
