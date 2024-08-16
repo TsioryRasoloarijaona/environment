@@ -23,7 +23,7 @@ export default function page() {
           <p className="w-full text-center text-sm text-gray-400 mt-3 mb-9">
             please fill all fields
           </p>
-          <div className="mb-3 text-center">
+          <div className="mb-5">
             <GoogleAuth/>
           </div>
           <FormControl
@@ -69,13 +69,13 @@ export default function page() {
                 focusBorderColor="gray.400"
               />
             </InputGroup>
-            <FormLabel>password</FormLabel>
+            <FormLabel>select file</FormLabel>
             <InputGroup>
               <InputRightElement pointerEvents="none">
                 <IoKeyOutline />
               </InputRightElement>
               <Input
-                type="password"
+                type="file"
                 placeholder="Enter your password"
                 focusBorderColor="gray.400"
               />

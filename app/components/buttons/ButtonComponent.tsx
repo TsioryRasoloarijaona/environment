@@ -9,7 +9,7 @@ interface buttonProps {
 const ButtonComponent : React.FC<buttonProps> =({text}) => {
   return (
     <>
-      <Button variant="ghost" className="bg-purple-primary text-white" _hover={{background : 'gray.500' , color : 'white'}}>
+      <Button variant="ghost" className="bg-green-btn text-white" _hover={{background : 'gray.500' , color : 'white'}}>
         <p className="text-white text-sm">{text}</p>
       </Button>
     </>
