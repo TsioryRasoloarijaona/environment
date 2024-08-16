@@ -22,7 +22,7 @@ export default function page() {
       <HStack>
         <div className="relative w-full h-[90vh]">
           <Image
-            src={"/work.jpg"}
+            src={"/login-pic.png"}
             alt="svg"
             layout="fill"
             objectFit="cover"
@@ -54,7 +54,7 @@ export default function page() {
                   <Input type="password" placeholder="Enter your password" focusBorderColor="gray.400"/>
                 </InputGroup>
                 <p className="text-xs text-right text-gray-400 mt-2 mb-9">forgot password?</p>
-                <button className="w-full text-center bg-purple-primary py-3 font-bold text-white rounded-md" type="submit">sign in</button>
+                <button className="w-full text-center bg-green-btn py-3 font-bold text-white rounded-md" type="submit">sign in</button>
               </FormControl>
             </div>
           </div>
