@@ -8,6 +8,7 @@ import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
 import post from '@/app/helper/post/post';
+import { useRouter } from 'next/navigation';
 
 const schema = z.object({
   username: z.string().email('Invalid email address'),
@@ -20,6 +21,7 @@ export default function Page() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormValues>({
     resolver: zodResolver(schema)
   });
+  const router = useRouter()
 
   const onSubmit = async (data: FormValues) => {
     try {
@@ -29,8 +31,9 @@ export default function Page() {
         url: '/token', 
         data,
       });
-
+      router.push("/loaderPage")
       console.log('Response:', response);
+      localStorage.setItem("token", response.toString())
     } catch (error) {
       console.error('Error submitting form:', error);
     }
