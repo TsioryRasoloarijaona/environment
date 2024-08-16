@@ -19,14 +19,19 @@ import {
   PopoverHeader,
   PopoverBody,
   Input,
-  Image,
+  Image,Link as ChakraLink 
 } from '@chakra-ui/react';
 import { FaHeart } from 'react-icons/fa';
 import { SearchIcon } from '@chakra-ui/icons';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { motion } from 'framer-motion';
 import { FaUserCircle } from 'react-icons/fa';
+import Link from 'next/link';
+import { useRouter } from "next/navigation";
 
+const MotionBox = motion(Box);
+
+import { useEffect } from 'react';
 const HeartIcon = createIcon({
   displayName: 'HeartIcon',
   path: <FaHeart cursor="pointer" color="#fff" />,
@@ -58,14 +63,17 @@ interface WithSubnavigationProps {
 
 const WithSubnavigation: React.FC<WithSubnavigationProps> = ({ isFixed, cart }) => {
   const { isOpen, onToggle } = useDisclosure();
-
   const scrollToElement = (elementId: string) => {
       const element = document.getElementById(elementId);
       if (element) {
           element.scrollIntoView({ behavior: 'smooth' });
       }
   };
+  const router = useRouter();
 
+  const handleNavigation = (path: string) => {
+    router.push(path);
+  };
   console.log(cart);
 
   return (
@@ -168,7 +176,15 @@ const WithSubnavigation: React.FC<WithSubnavigationProps> = ({ isFixed, cart }) 
                               <PopoverCloseButton />
                               <PopoverHeader>Login</PopoverHeader>
                               <PopoverBody>
-                              <Text>please login or create an account</Text>
+                              <Text>To contribute to our mission of preserving the environment, please log in or create an account. Your involvement helps us make a greater impact.</Text>
+                                <Stack direction="row" spacing={4} mt={4}>
+                                    <Button colorScheme="green" onClick={() =>      handleNavigation('/auth/login')}>
+                                      Login
+                                    </Button>
+                                    <Button colorScheme="blue" onClick={() => handleNavigation('/auth/register')}>
+                                      Register
+                                    </Button>
+                                </Stack>
                               </PopoverBody>
                           </PopoverContent>
                       </Popover>
@@ -240,7 +256,7 @@ const DesktopNav: React.FC = () => {
               <Box key={navItem.label}>
                   <Popover trigger={'hover'} placement={'bottom-start'}>
                       <PopoverTrigger>
-                          <motion.div
+                          <MotionBox
                               whileHover={{ scale: 1.2 }}
                               whileTap={{ scale: 0.9 }}
                               onClick={() => scrollToElement(navItem.link)}
@@ -256,7 +272,7 @@ const DesktopNav: React.FC = () => {
                               <Text color="#fff">
                                   {navItem.label}
                               </Text>
-                          </motion.div>
+                          </MotionBox>
                       </PopoverTrigger>
 
                       {navItem.children && (
