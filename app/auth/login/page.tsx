@@ -7,6 +7,7 @@ import { IoKeyOutline } from 'react-icons/io5';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { zodResolver } from '@hookform/resolvers/zod';
+import post from '@/app/helper/post/post';
 
 const schema = z.object({
   email: z.string().email('Invalid email address'),
@@ -20,8 +21,24 @@ export default function Page() {
     resolver: zodResolver(schema)
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log('Submitted Data:', data);
+  const onSubmit = async (data: FormValues) => {
+    try {
+      console.log('Submitted Data:', data);
+
+      const response = await post<FormValues, { success: boolean, message: string }>({
+        url: '/token', 
+        data,
+        config: {
+          headers: {
+            'Content-Type': 'application/json',
+          },
+        },
+      });
+
+      console.log('Response:', response);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (

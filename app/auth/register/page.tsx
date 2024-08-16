@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React from "react";
 import {
@@ -18,6 +18,7 @@ import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import GoogleAuth from "@/app/components/buttons/GoogleAuth";
 import { usePersonStore } from "@/app/components/buttons/GoogleAuth";
+import post from '@/app/helper/post/post';
 
 const schema = z.object({
   name: z.string().nonempty("Name is required"),
@@ -44,8 +45,32 @@ export default function Page() {
     setValue("file", file); 
   };
 
-  const onSubmit = (data: FormData) => {
-    console.log("Submitted Data:", data);
+  const onSubmit = async (data: FormData) => {
+    try {
+      console.log("Submitted Data:", data);
+
+      const formData = new FormData();
+      formData.append("name", data.name);
+      formData.append("email", data.email);
+      formData.append("password", data.password);
+      if (data.file) {
+        formData.append("file", data.file);
+      }
+
+      const response = await post<FormData, { success: boolean, message: string }>({
+        url: '/register',
+        data,
+        config: {
+          headers: {
+            'Content-Type': 'multipart/form-data', 
+          },
+        },
+      });
+
+      console.log('Response:', response);
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    }
   };
 
   return (
@@ -92,7 +117,6 @@ export default function Page() {
                     placeholder="Enter your email address"
                     focusBorderColor="gray.400"
                     {...field}
-                    readOnly
                   />
                 </InputGroup>
               )}
