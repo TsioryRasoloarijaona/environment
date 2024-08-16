@@ -13,11 +13,12 @@ import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 const Footer = () => {
   return (
     <Box
-      bg="green.900"
+      
       color="gray.200"
       py={10}
       px={{ base: 5, md: 20 }}
       mt={10}
+      className="bg-green-mate"
     >
       <Flex
         direction={{ base: "column", md: "row" }}
@@ -30,11 +31,11 @@ const Footer = () => {
           mb={{ base: 5, md: 0 }}
           width={{ base: "100%", md: "30%" }}
         >
-          <Text fontWeight="bold" fontSize="lg" color="green.300">
+          <Text fontWeight="bold" fontSize="lg" color="white">
             Navigation
           </Text>
           <HStack spacing={6} flexWrap="wrap">
-            <Link href="/" _hover={{ color: "green.300" }} fontSize="sm">
+            <Link href="/" _hover={{ color: "white" }} fontSize="sm">
               Home
             </Link>
             <Link href="/about" _hover={{ color: "green.300" }} fontSize="sm">
@@ -58,7 +59,7 @@ const Footer = () => {
           mb={{ base: 5, md: 0 }}
           width={{ base: "100%", md: "30%" }}
         >
-          <Text fontWeight="bold" fontSize="lg" color="green.300">
+          <Text fontWeight="bold" fontSize="lg" color="white">
             Contact Us
           </Text>
           <Text fontSize="sm">Email: contact@environment.com</Text>
@@ -67,7 +68,7 @@ const Footer = () => {
         </Stack>
 
         <Stack spacing={4} width={{ base: "100%", md: "30%" }}>
-          <Text fontWeight="bold" fontSize="lg" color="green.300">
+          <Text fontWeight="bold" fontSize="lg" color="white">
             Follow Us
           </Text>
           <HStack spacing={6}>

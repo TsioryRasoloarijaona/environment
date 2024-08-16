@@ -18,6 +18,7 @@ const config: Config = {
         "green-btn": "#68bb97",
         "gray-primary": "#F8F8FA",
         "green-bg": "#002e1f",
+        "green-mate":"#011402"
       },
     },
   },

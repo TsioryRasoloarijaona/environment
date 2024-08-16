@@ -1,13 +1,5 @@
 import React, { useEffect } from "react";
-import {
-  MapContainer,
-  Marker,
-  TileLayer,
-  useMapEvents,
-  Popup,
-  useMap,
-  ZoomControl,
-} from "react-leaflet";
+import { MapContainer, Marker, TileLayer, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import { useState } from "react";
 import { get } from "@/app/helper/fecth/get";
@@ -132,7 +124,11 @@ export default function Map() {
             <Popup>You are here</Popup>
           </Marker>
         )}
-        {pos && <LocationMarker lat={pos.lat} lng={pos.lng}></LocationMarker>}
+        {pos && <LocationMarker lat={-18.8792} lng={47.5079}></LocationMarker>}
+        <Marker position={new L.LatLng(-22.400, 46.1167)} />
+        <Marker position={new L.LatLng(-18.8792, 47.5079)} />
+        <Marker position={new L.LatLng(-25.0314, 46.1167)} />
+        <Marker position={new L.LatLng(-18.8792, 47.5079)} />
       </MapContainer>
     </>
   );
@@ -142,7 +138,7 @@ function LocationMarker({ lat, lng }: { lat: number; lng: number }) {
   const position = new L.LatLng(lat, lng);
   const map = useMap();
   map.setView(position);
-  map.flyTo(position,map.getZoom());
+  map.flyTo(position, map.getZoom());
   return (
     <Marker position={position} icon={customIcon} draggable={true}>
       <Popup>You are here</Popup>
@@ -150,7 +146,7 @@ function LocationMarker({ lat, lng }: { lat: number; lng: number }) {
   );
 }
 
-async function getCoordinates() {
+export async function getCoordinates() {
   try {
     const position = await new Promise<{
       latitude: number;
