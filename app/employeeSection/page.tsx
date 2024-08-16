@@ -12,7 +12,7 @@ export default function page() {
                 <DetailsCard />
             </Flex>
             <Box mt='3'>
-                <Heading size="md" ml='35%' my='3'>Activities in your area</Heading>
+                <Heading size="xl" ml='35%' my='3'>Activities in your area</Heading>
                 <ActivityTable />
             </Box>
         </Box>

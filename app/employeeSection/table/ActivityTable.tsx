@@ -19,8 +19,7 @@ const ActivityTable = () => {
                             <Td>Ravintsara</Td>
                             <Td isNumeric>25</Td>
                             <Td><button
-                                className="w-full text-center bg-green-btn py-3 font-bold text-white rounded-md"
-                                type="submit"
+                                className="w-20 text-center bg-green-btn py-3 text-white rounded-md"
                             >Confirm</button></Td>
                         </Tr>
                         <Tr>
@@ -28,8 +27,7 @@ const ActivityTable = () => {
                             <Td>Ravintsara</Td>
                             <Td isNumeric>25</Td>
                             <Td><button
-                                className="w-full text-center bg-green-btn py-3 font-bold text-white rounded-md"
-                                type="submit"
+                                className="w-20 text-center bg-green-btn py-3  text-white rounded-md"
                             >Confirm</button></Td>
                         </Tr>
                         <Tr>
@@ -37,8 +35,7 @@ const ActivityTable = () => {
                             <Td>Ravintsara</Td>
                             <Td isNumeric>25</Td>
                             <Td><button
-                                className="w-full text-center bg-green-btn py-3 font-bold text-white rounded-md"
-                                type="submit"
+                                className="w-20 text-center bg-green-btn py-3  text-white rounded-md"
                             >Confirm</button></Td>
                         </Tr>
                         <Tr>
@@ -46,8 +43,7 @@ const ActivityTable = () => {
                             <Td>Ravintsara</Td>
                             <Td isNumeric>25</Td>
                             <Td><button
-                                className="w-full text-center bg-green-btn py-3 font-bold text-white rounded-md"
-                                type="submit"
+                                className="w-20 text-center bg-green-btn py-3  text-white rounded-md"
                             >Confirm</button></Td>
                         </Tr>
                     </Tbody>

@@ -28,7 +28,7 @@ export default function Sidebar() {
     ];
 
     return (
-        <div className="w-full h-screen bg-green-m">
+        <div className="w-full h-screen bg-green-mate">
             <div className="pt-20 mx-auto w-fit">
                 <Heading
                     as="h3"
