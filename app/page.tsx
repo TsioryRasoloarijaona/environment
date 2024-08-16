@@ -1,66 +1,79 @@
-import CardComponent from "./components/Card";
+"use client"
 import Header from "./components/heroes/header/Header";
 import Footer from "./components/Footer/Footer";
 import { StickyScroll } from "./components/ui/sticky-scroll-reveal";
 import Image from "next/image";
 import Cards from "./components/cards/Cards";
+import { useEffect, useState } from "react";
+import Loader from "./components/loader/Loader";
  
 const content = [
   {
-    title: "Collaborative Editing",
+    title: "Reforestation Efforts",
     description:
-      "Work together in real time with your team, clients, and stakeholders. Collaborate on documents, share ideas, and make decisions quickly. With our platform, you can streamline your workflow and increase productivity.",
+      "Join hands in the fight against deforestation. Through reforestation, we can restore lost forests, combat climate change, and protect biodiversity. Our platform connects you with local and global initiatives, helping you contribute to a greener planet.",
     content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Collaborative Editing
+      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--green-500),var(--brown-500))] flex items-center justify-center text-white">
+        Reforestation Efforts
       </div>
     ),
   },
   {
-    title: "Real time changes",
+    title: "The Dangers of Deforestation",
     description:
-      "See changes as they happen. With our platform, you can track every modification in real time. No more confusion about the latest version of your project. Say goodbye to the chaos of version control and embrace the simplicity of real-time updates.",
+      "Deforestation poses a severe threat to our planet, leading to loss of habitats, increased carbon emissions, and disrupted ecosystems. Learn about the dangers and take action. Awareness is the first step toward preservation.",
     content: (
       <div className="h-full w-full  flex items-center justify-center text-white">
         <Image
-          src="/linear.webp"
+          src="/deforestation.webp"
           width={300}
           height={300}
           className="h-full w-full object-cover"
-          alt="linear board demo"
+          alt="Deforestation impact"
         />
       </div>
     ),
   },
   {
-    title: "Version control",
+    title: "Community-Led Environmental Initiatives",
     description:
-      "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
+      "Communities can thrive by leading environmental initiatives. Discover how rebuilding ecosystems, planting trees, and preserving nature not only protect the environment but also foster stronger, healthier communities. Be part of the change.",
     content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] flex items-center justify-center text-white">
-        Version control
+      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--blue-500),var(--green-500))] flex items-center justify-center text-white">
+        Community Initiatives
       </div>
     ),
   },
   {
-    title: "Running out of content",
+    title: "Sustainable Living",
     description:
-      "Experience real-time updates and never stress about version control again. Our platform ensures that you're always working on the most recent version of your project, eliminating the need for constant manual updates. Stay in the loop, keep your team aligned, and maintain the flow of your work without any interruptions.",
+      "Adopt sustainable practices in daily life to support environmental restoration. From reducing waste to planting trees, every effort counts. Explore tips, resources, and community stories that inspire a sustainable future.",
     content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Running out of content
+      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--green-500),var(--yellow-500))] flex items-center justify-center text-white">
+        Sustainable Living
       </div>
     ),
   },
 ];
 
+
 export default function Home() {
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+        setIsLoading(false); 
+    }, 3000); 
+    return () => clearTimeout(timer); 
+}, []);
   return (
-    <main className="bg-gray-primary">
-      <Header/>
-      <Cards/>
-      <StickyScroll content={content}/>
-      <Footer/>
-    </main>
+    <>
+    <Loader isLoading={isLoading} />
+      <main className="bg-gray-primary">
+        <Header/>
+        <Cards/>
+        <StickyScroll content={content}/>
+        <Footer/>
+      </main>
+    </>
   );
 }
