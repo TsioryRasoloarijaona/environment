@@ -25,7 +25,7 @@ import { FaHeart } from 'react-icons/fa';
 import { SearchIcon } from '@chakra-ui/icons';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { motion } from 'framer-motion';
-import logoEdenia from '../../assets/edenia-logo-transparent.png';
+
 
 const HeartIcon = createIcon({
   displayName: 'HeartIcon',

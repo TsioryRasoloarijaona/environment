@@ -28,7 +28,7 @@ export default function Slidebar() {
     {
       name: "Employe",
       icon: <GrUserWorker className="text-xl" />,
-      path: "/dashboard/forms/employeDetails",
+      path: "/dashboard/forms",
     },
     {
       name: "Map",
