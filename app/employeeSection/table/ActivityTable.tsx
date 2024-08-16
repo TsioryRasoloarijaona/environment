@@ -9,7 +9,6 @@ const ActivityTable = () => {
                         <Tr>
                             <Th fontSize='md'>Date</Th>
                             <Th fontSize='md'>Tree Name</Th>
-                            <Th isNumeric fontSize='md'>Number</Th>
                             <Th fontSize='md'>Actions</Th>
                         </Tr>
                     </Thead>
@@ -17,7 +16,6 @@ const ActivityTable = () => {
                         <Tr>
                             <Td>2024-01-15</Td>
                             <Td>Ravintsara</Td>
-                            <Td isNumeric>25</Td>
                             <Td><button
                                 className="w-20 text-center bg-green-btn py-3 text-white rounded-md"
                             >Confirm</button></Td>
@@ -25,7 +23,6 @@ const ActivityTable = () => {
                         <Tr>
                             <Td>2024-01-15</Td>
                             <Td>Ravintsara</Td>
-                            <Td isNumeric>25</Td>
                             <Td><button
                                 className="w-20 text-center bg-green-btn py-3  text-white rounded-md"
                             >Confirm</button></Td>
@@ -33,7 +30,6 @@ const ActivityTable = () => {
                         <Tr>
                             <Td>2024-01-15</Td>
                             <Td>Ravintsara</Td>
-                            <Td isNumeric>25</Td>
                             <Td><button
                                 className="w-20 text-center bg-green-btn py-3  text-white rounded-md"
                             >Confirm</button></Td>
@@ -41,7 +37,6 @@ const ActivityTable = () => {
                         <Tr>
                             <Td>2024-01-15</Td>
                             <Td>Ravintsara</Td>
-                            <Td isNumeric>25</Td>
                             <Td><button
                                 className="w-20 text-center bg-green-btn py-3  text-white rounded-md"
                             >Confirm</button></Td>

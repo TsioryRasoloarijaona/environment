@@ -9,15 +9,14 @@ const NotificationCard = () => {
                 <Heading size='md'>Notifications</Heading>
             </CardHeader>
             <CardBody>
-                <Heading size='sm'>You received a new notification.</Heading>
+                <Text size='sm'>You received a new notification.</Text>
                 <Popover>
                     <PopoverTrigger>
-                        <Button><IoIosMore /> More</Button>
+                        <Button mt='2'><IoIosMore /> More</Button>
                     </PopoverTrigger>
                     <PopoverContent>
                         <PopoverArrow />
                         <PopoverCloseButton />
-                        <PopoverHeader>Notifications</PopoverHeader>
                         <PopoverBody>< NotificationList /></PopoverBody>
                     </PopoverContent>
                 </Popover>
