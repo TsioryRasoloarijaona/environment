@@ -29,6 +29,8 @@ import { FaUserCircle } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
 
+const MotionBox = motion(Box);
+
 import { useEffect } from 'react';
 const HeartIcon = createIcon({
   displayName: 'HeartIcon',
@@ -254,7 +256,7 @@ const DesktopNav: React.FC = () => {
               <Box key={navItem.label}>
                   <Popover trigger={'hover'} placement={'bottom-start'}>
                       <PopoverTrigger>
-                          <motion.div
+                          <MotionBox
                               whileHover={{ scale: 1.2 }}
                               whileTap={{ scale: 0.9 }}
                               onClick={() => scrollToElement(navItem.link)}
@@ -270,7 +272,7 @@ const DesktopNav: React.FC = () => {
                               <Text color="#fff">
                                   {navItem.label}
                               </Text>
-                          </motion.div>
+                          </MotionBox>
                       </PopoverTrigger>
 
                       {navItem.children && (
