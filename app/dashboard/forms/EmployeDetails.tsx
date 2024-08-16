@@ -1,4 +1,5 @@
 import React from "react";
+import { IoMdAdd } from "react-icons/io";
 import {
   TableContainer,
   TableCaption,
@@ -11,10 +12,12 @@ import {
   Avatar,
   WrapItem,
 } from "@chakra-ui/react";
+import ModalComponent from "@/app/components/Modal/ModalComponent";
 
-export default function Customer() {
+export default function EmployeDetails() {
   return (
     <TableContainer background={"white"} >
+        <div className="w-fit  h-fit p-3 text-whit ml-3"><ModalComponent/></div>
       <Table variant="simple" size={'lg'}>
         <TableCaption>Imperial to metric conversion factors</TableCaption>
         <Thead>
