@@ -1,7 +1,10 @@
+'use client'
 import React from "react";
-import Profile from "./profile/Profile";
+import Profile from "./profile/Profile"
 import Activities from "./activities/Activities";
 import NewActivities from "./newActivities/NewActivities";
+import Map from "../dashboard/maps/Map";
+import MapCustomer from "./map/MapCustomer";
 
 export default function page() {
   return (
@@ -16,6 +19,9 @@ export default function page() {
           </div>
         </div>
         <div className="h-full space-y-2 overflow-y-auto w-full">
+             <div>
+                <MapCustomer/>
+             </div>
           <div className=" ">
             <Activities />
           </div>
