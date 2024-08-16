@@ -5,15 +5,15 @@ import {
   Heading,
   CardBody,
   Stack,
-  Box,
-  Text,
-  StackDivider,
-  Avatar,
   FormControl,
   FormLabel,
   Input,
+  MenuButton,
+  Menu,
+  MenuList,
 } from "@chakra-ui/react";
-import ButtonComponent from "@/app/components/buttons/ButtonComponent";
+import TreeList from "./TreeList";
+import FetchList from "./FetchList";
 
 export default function NewActivities() {
   return (
@@ -24,7 +24,23 @@ export default function NewActivities() {
 
       <CardBody>
         <Stack spacing="4">
+          <div className="border py-2 px-3 rounded-md">
+            <Menu isLazy>
+              <MenuButton fontSize={"small"}>chose a type Of tree</MenuButton>
+              <MenuList>
+                <FetchList/>
+              </MenuList>
+            </Menu>
+          </div>
           <form action="">
+            <FormControl mt={4}>
+              <FormLabel>tree type</FormLabel>
+              <Input
+                placeholder="tree type"
+                type="email"
+                fontSize={"smaller"}
+              />
+            </FormControl>
             <FormControl mt={4}>
               <FormLabel>tree Name</FormLabel>
               <Input
@@ -33,6 +49,7 @@ export default function NewActivities() {
                 fontSize={"smaller"}
               />
             </FormControl>
+
             <FormControl mt={4}>
               <FormLabel>region</FormLabel>
               <Input
@@ -58,7 +75,9 @@ export default function NewActivities() {
               <FormLabel>picture</FormLabel>
               <Input placeholder="Last name" type="file" fontSize={"smaller"} />
             </FormControl>
-            <button className="w-full bg-green-btn py-2 mt-6 rounded-md text-white">save</button>
+            <button className="w-full bg-green-btn py-2 mt-6 rounded-md text-white">
+              save
+            </button>
           </form>
         </Stack>
       </CardBody>

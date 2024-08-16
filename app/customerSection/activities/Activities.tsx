@@ -1,13 +1,7 @@
 import React from "react";
-import {
-  Card,
-  Image,
-  Stack,
-  CardBody,
-  Text,
-  CardFooter,
-} from "@chakra-ui/react";
+import { Card, Stack, CardBody, Text, CardFooter } from "@chakra-ui/react";
 import ButtonComponent from "@/app/components/buttons/ButtonComponent";
+import Image from "next/image";
 
 export default function Activities() {
   return (
@@ -16,12 +10,15 @@ export default function Activities() {
       overflow="hidden"
       variant="outline"
     >
-      <Image
-        objectFit="cover"
-        maxW={{ base: "100%", sm: "200px" }}
-        src="https://images.unsplash.com/photo-1667489022797-ab608913feeb?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHw5fHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=800&q=60"
-        alt="Caffe Latte"
-      />
+      <div className="w-[250px] relative">
+        <Image
+          src="https://i.pinimg.com/564x/2b/b6/f9/2bb6f9b59bd5c43c76b31f3f135be7bc.jpg"
+          alt="Caffe Latte"
+          layout="fill"
+          objectFit="cover"
+          className="absolute top-0 left-0"
+        />
+      </div>
 
       <Stack>
         <CardBody>
@@ -35,7 +32,6 @@ export default function Activities() {
             <div className="border px-3 rounded-full">
               <Text py="2">number - 10</Text>
             </div>
-            
           </div>
         </CardBody>
 
