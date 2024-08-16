@@ -25,10 +25,10 @@ const Header = ({}) => {
             <Box bg="#555555b2" w="100%" h="65vh" position="absolute" top="0" />
             <Flex direction="column" position="relative" h="100%" marginBlock="auto" justifyContent="center">
                 <Text fontSize={isMobile ? "3rem" : "4rem"} textAlign="center" color="#fff">
-                Environment Care
+                Your Guide to Green Living
                 </Text>
                 <Text fontSize={isMobile ? "1.4rem" : "2rem"}  textAlign="center" color="#fffc">
-                    lorem ipsum io piso ah
+                    Discover practical tips
                 </Text>    
             </Flex>
         </Box>
