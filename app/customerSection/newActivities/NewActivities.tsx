@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import {
   Card,
   CardHeader,
@@ -11,11 +12,26 @@ import {
   MenuButton,
   Menu,
   MenuList,
+  HStack,
 } from "@chakra-ui/react";
 import TreeList from "./TreeList";
 import FetchList from "./FetchList";
+import { useStoreTypeTree } from "./TreeList";
+import { getCoordinates } from "@/app/dashboard/maps/Map";
 
 export default function NewActivities() {
+  const { type } = useStoreTypeTree();
+  const [lat, setLat] = useState(0);
+  const [lng, setlng] = useState(0);
+
+  const handlePosition = async () => {
+    const coords = await getCoordinates();
+    if (coords) {
+      const { latitude, longitude } = coords;
+      setLat(coords.latitude);
+      setlng(coords.longitude);
+    }
+  };
   return (
     <Card>
       <CardHeader>
@@ -28,17 +44,24 @@ export default function NewActivities() {
             <Menu isLazy>
               <MenuButton fontSize={"small"}>chose a type Of tree</MenuButton>
               <MenuList>
-                <FetchList/>
+                <FetchList />
               </MenuList>
             </Menu>
           </div>
+          <button
+            className="px-3 py-1 bg-green-btn text-white rounded-md mt-4 "
+            onClick={handlePosition}
+          >
+            locate me
+          </button>
           <form action="">
             <FormControl mt={4}>
               <FormLabel>tree type</FormLabel>
               <Input
                 placeholder="tree type"
-                type="email"
+                type="text"
                 fontSize={"smaller"}
+                value={type}
               />
             </FormControl>
             <FormControl mt={4}>
@@ -59,17 +82,22 @@ export default function NewActivities() {
               />
             </FormControl>
             <FormControl mt={4}>
-              <FormLabel>Localisation</FormLabel>
-              <Input
-                placeholder="Last name"
-                type="email"
-                fontSize={"smaller"}
-              />
-              <div className="text-right">
-                <button className="px-3 py-1 bg-green-btn text-white rounded-md mt-4 ">
-                  locate me
-                </button>
-              </div>
+              <FormLabel>Location</FormLabel>
+              <HStack>
+                <Input
+                  placeholder="Lattitude"
+                  type=""
+                  fontSize={"smaller"}
+                  value={lat}
+                />
+                <Input
+                  placeholder="longitude"
+                  type="number"
+                  fontSize={"smaller"}
+                  value={lng}
+                />
+              </HStack>
+              <div className="text-right"></div>
             </FormControl>
             <FormControl mt={4}>
               <FormLabel>picture</FormLabel>

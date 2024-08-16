@@ -13,7 +13,7 @@ import { IoKeyOutline } from "react-icons/io5";
 import GoogleAuth from "@/app/components/buttons/GoogleAuth";
 import { usePersonStore } from "@/app/components/buttons/GoogleAuth";
 
-export default function page() {
+export default function Page() {
     const { name, email } = usePersonStore();
   return (
     <Box className="h-screen w-full bg-gray-primary">
