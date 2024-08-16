@@ -25,7 +25,7 @@ import { FaHeart } from 'react-icons/fa';
 import { SearchIcon } from '@chakra-ui/icons';
 import { HamburgerIcon, CloseIcon, ChevronDownIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { motion } from 'framer-motion';
-import logoEdenia from '../../assets/edenia-logo-transparent.png';
+import { FaUserCircle } from 'react-icons/fa';
 
 const HeartIcon = createIcon({
   displayName: 'HeartIcon',
@@ -36,11 +36,20 @@ const CartIcon = createIcon({
   displayName: 'CartIcon',
   path: <FaHeart cursor="pointer" color="#fff" />,
 });
-
+export const LogIcon = createIcon({
+  displayName: 'LogName',
+  path: <FaUserCircle cursor="pointer" color="#fff" />
+})
 interface CartItem {
   nom: string;
   prix: string;
 }
+interface NavItem {
+  label: string;
+  link: string;
+  children?: NavItem[]; 
+}
+
 
 interface WithSubnavigationProps {
   isFixed: boolean;
@@ -144,7 +153,7 @@ const WithSubnavigation: React.FC<WithSubnavigationProps> = ({ isFixed, cart }) 
                       <Popover>
                           <PopoverTrigger>
                               <Icon
-                                  as={CartIcon}
+                                  as={LogIcon}
                                   w={6}
                                   h={6}
                                   cursor="pointer"
@@ -157,25 +166,9 @@ const WithSubnavigation: React.FC<WithSubnavigationProps> = ({ isFixed, cart }) 
                           <PopoverContent borderRadius="10px" boxShadow="lg" bg="white" p={4} maxW="300px" mt={2}>
                               <PopoverArrow />
                               <PopoverCloseButton />
-                              <PopoverHeader>Cart</PopoverHeader>
+                              <PopoverHeader>Login</PopoverHeader>
                               <PopoverBody>
-                                  {!cart && (
-                                      <Text>Your cart is empty</Text>
-                                  )}
-                                  <Box>
-                                      {cart && (
-                                          cart.map((elem, index) => (
-                                              <Box borderRadius={5} marginBlock={3} padding={3} bg="#80808047" key={index}>
-                                                  <Text> {elem.nom} </Text>
-                                                  <Text> {elem.prix} </Text>
-                                                  <Flex gap={4} marginBlock={2}>
-                                                      <Button>Validate</Button>
-                                                      <Button>Cancel</Button>
-                                                  </Flex>
-                                              </Box>
-                                          ))
-                                      )}
-                                  </Box>
+                              <Text>please login or create an account</Text>
                               </PopoverBody>
                           </PopoverContent>
                       </Popover>
@@ -376,7 +369,7 @@ const MobileNavItem: React.FC<MobileNavItemProps> = ({ label, children, link }) 
   );
 };
 
-const NAV_ITEMS = [
+const NAV_ITEMS: NavItem[] = [
   {
       label: 'Accueil',
       link: 'home',
