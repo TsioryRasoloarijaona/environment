@@ -16,22 +16,27 @@ interface User {
 interface userState {
   name: string ;
   email: string ;
+  img : string
   updateName: (name: string) => void;
   updateEmail: (email: string) => void;
+  updateImg: (img: string) => void;
 }
 
 export const usePersonStore = create<userState>((set) => ({
   name: '',
   email: '',
+  img:'',
   updateName: (name : string ) => set(() => ({ name : name })),
   updateEmail: (email : string ) => set(() => ({ email: email })),
+  updateImg: (img : string ) => set(() => ({ img: img  })),
 }))
 
 
 export default function GoogleAuth() {
-  const {  updateName, updateEmail } = usePersonStore((state) => ({
+  const {  updateName, updateEmail , updateImg } = usePersonStore((state) => ({
     updateName: state.updateName,
     updateEmail: state.updateEmail,
+    updateImg : state.updateImg
   }));
 
   const provider = new GoogleAuthProvider();
@@ -43,6 +48,7 @@ export default function GoogleAuth() {
         if (user) {
          updateName(user.displayName || '')
          updateEmail(user.email || '')
+         updateImg(user.photoURL || '')
         }
       })
       .catch((error) => {
