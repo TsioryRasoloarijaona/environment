@@ -21,8 +21,8 @@ import { usePersonStore } from "@/app/components/buttons/GoogleAuth";
 import post from '@/app/helper/post/post';
 
 const schema = z.object({
-  name: z.string(),
-  email: z.string().email("Invalid email address"),
+  name: z.string().min(4),
+  email: z.string().email(),
   password: z.string().min(6, "Password must be at least 6 characters long"),
   image: z.string(),
   telephone: z.string()
@@ -37,13 +37,9 @@ export default function Page() {
     setValue("name", name)
     setValue("email", email)
     setValue("image", image)
-  }, [])
+  }, [name, email, image])
   const { handleSubmit, control, formState: { errors }, setValue } = useForm<FormData>({
     resolver: zodResolver(schema),
-    defaultValues: {
-      name,
-      email,
-    }
   });
 
   const onSubmit = async (data: FormData) => {
@@ -58,6 +54,8 @@ export default function Page() {
       formData.append("password", data.password);
       formData.append("image", image);
       setValue("image", image)
+      setValue("name", name)
+      setValue("email", email)
       formData.append("telephone", data.telephone);
 
       const response = await post<FormData, { success: boolean, message: string }>({
