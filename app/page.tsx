@@ -1,5 +1,6 @@
 import CardComponent from "./components/Card";
 import Header from "./components/heroes/header/Header";
+import Footer from "./components/Footer/Footer";
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
           <CardComponent />
         </div>
       </div>
+      <Footer/>
     </main>
   );
 }
