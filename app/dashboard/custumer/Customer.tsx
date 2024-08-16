@@ -1,4 +1,6 @@
 import React from "react";
+import {get} from '@/app/helper/fecth/get'
+import {User} from '@/app/interfaces/userInterface'
 import {
   TableContainer,
   TableCaption,
@@ -12,11 +14,12 @@ import {
   WrapItem,
 } from "@chakra-ui/react";
 
-export default function Customer() {
+export default async function Customer() {
+    const custumer : User[] = await get('https://environment-pyv8.onrender.com/users')
   return (
     <TableContainer background={"white"} >
       <Table variant="simple" size={'lg'}>
-        <TableCaption>Imperial to metric conversion factors</TableCaption>
+       
         <Thead>
           <Tr>
             <Th>img</Th>
@@ -27,48 +30,24 @@ export default function Customer() {
           </Tr>
         </Thead>
         <Tbody>
-          <Tr>
+            {custumer.map((el , index)=>(
+
+          <Tr key={index}>
             <Td>
               <WrapItem>
                 <Avatar
                   name="Segun Adebayo"
-                  src="https://bit.ly/sage-adebayo"
+                  src={el.image}
                 />
               </WrapItem>
             </Td>
-            <Td>Tsiory</Td>
-            <Td>hei.tsiory</Td>
-            <Td>Antananarivo</Td>
-            <Td>Antananarivo</Td>
+            <Td>{el.name}</Td>
+            <Td>{el.email}</Td>
+            <Td>{el.telephone}</Td>
+            <Td>{el.plantCount}</Td>
           </Tr>
-          <Tr>
-            <Td>
-              <WrapItem>
-                <Avatar
-                  name="Segun Adebayo"
-                  src="https://bit.ly/sage-adebayo"
-                />
-              </WrapItem>
-            </Td>
-            <Td>Tsiory</Td>
-            <Td>hei.tsiory</Td>
-            <Td>Antananarivo</Td>
-            <Td>Antananarivo</Td>
-          </Tr>
-          <Tr>
-            <Td>
-              <WrapItem>
-                <Avatar
-                  name="Segun Adebayo"
-                  src="https://bit.ly/sage-adebayo"
-                />
-              </WrapItem>
-            </Td>
-            <Td>Tsiory</Td>
-            <Td>hei.tsiory</Td>
-            <Td>Antananarivo</Td>
-            <Td>+263 0348674323</Td>
-          </Tr>
+            ))}
+         
         </Tbody>
       </Table>
     </TableContainer>
