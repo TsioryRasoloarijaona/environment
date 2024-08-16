@@ -19,14 +19,14 @@ export default function Slidebar() {
       path: "/dashboard",
     },
     {
+      name: "Customers",
+      icon: <IoAppsSharp className="text-xl" />,
+      path: "/dashboard/custumer",
+    },
+    {
       name: "Tables",
       icon: <IoAppsSharp className="text-xl" />,
       path: "/dashboard/tables",
-    },
-    {
-      name: "buttons",
-      icon: <GrLogout className="text-xl" />,
-      path: "/dashboard/buttons",
     },
     {
       name: "Map",
