@@ -19,6 +19,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import GoogleAuth from "@/app/components/buttons/GoogleAuth";
 import { usePersonStore } from "@/app/components/buttons/GoogleAuth";
 import post from '@/app/helper/post/post';
+import { useRouter } from "next/navigation";
 
 const schema = z.object({
   name: z.string().min(4),
@@ -32,7 +33,7 @@ type FormData = z.infer<typeof schema>;
 
 export default function Page() {
   const { name, email , image } = usePersonStore();
-
+  const router = useRouter()
   useEffect(()=>{
     setValue("name", name)
     setValue("email", email)
@@ -62,7 +63,7 @@ export default function Page() {
         url: '/register',
         data,
       });
-
+      router.push("/loaderPage")
       console.log('Response:', response);
     } catch (error) {
       console.error('Error submitting form:', error);

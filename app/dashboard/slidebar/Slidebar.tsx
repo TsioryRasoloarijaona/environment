@@ -11,6 +11,7 @@ import { Center, Heading } from "@chakra-ui/react";
 import { MdDashboardCustomize } from "react-icons/md";
 import { MdAddBox } from "react-icons/md";
 import { GrUserWorker } from "react-icons/gr";
+import Image from "next/image";
 export default function Slidebar() {
   const router = useRouter();
   const [active, setActive] = useState(0);
@@ -48,18 +49,13 @@ export default function Slidebar() {
   ];
 
   return (
-    <div className="w-full h-screen bg-green-mate">
+    <div className="w-full h-screen bg-gray-900">
       <div className="pt-20 mx-auto w-fit">
-        <Heading
-          as="h3"
-          size="lg"
-          className="mx-auto flex items-center gap-2 "
-          color={"white"}
-        >
-          <MdDashboardCustomize /> Dashboard
-        </Heading>
+        <div>
+          <Image src={"/logo-app.png"} width={200} height={200} alt="png" />
+        </div>
       </div>
-      <div className="mx-auto mt-12 space-y-5">
+      <div className="mx-auto mt-9 space-y-5">
         {menu.map((el, index) => (
           <button
             className={`flex flex-row gap-3  ${
