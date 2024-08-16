@@ -371,15 +371,15 @@ const MobileNavItem: React.FC<MobileNavItemProps> = ({ label, children, link }) 
 
 const NAV_ITEMS: NavItem[] = [
   {
-      label: 'Accueil',
+      label: 'Home',
       link: 'home',
   },
   {
-      label: 'A propos',
+      label: 'About',
       link: 'about',
   },
   {
-      label: 'Produits',
+      label: 'Product',
       link: 'products',
   },
   {
