@@ -1,14 +1,11 @@
 import React from "react";
-import ChartOne from "./charts/BarChart";
-import ChartThree from "./charts/LineChart";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbSeparator,
-} from "@chakra-ui/react";
-import ChartTwo from "./charts/Donaught";
-import ChartFour from "./charts/PieChart";
+import ChartOne from "./charts/chartStats/ChartOne";
+import ChartThree from "./charts/chartStats/ChartThree";
+import ChartFive from "./charts/chartStats/ChartFive";
+import ChartSix from "./charts/chartStats/ChartSix";
+
+import ChartTwo from "./charts/chartTypes/Donaught";
+import ChartFour from "./charts/chartStats/ChartFour";
 
 export default function page() {
   return (
@@ -17,13 +14,13 @@ export default function page() {
         <div className="space-y-3">
           <ChartThree />
           <ChartOne />
-          <ChartThree />
+          <ChartSix />
         </div>
         <div className="space-y-5">
           <ChartTwo />
           <ChartFour />
           <ChartTwo />
-          <ChartFour />
+          <ChartFive />
         </div>
       </div>
     </div>

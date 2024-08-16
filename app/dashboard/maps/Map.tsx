@@ -146,7 +146,7 @@ function LocationMarker({ lat, lng }: { lat: number; lng: number }) {
   );
 }
 
-async function getCoordinates() {
+export async function getCoordinates() {
   try {
     const position = await new Promise<{
       latitude: number;

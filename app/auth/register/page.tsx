@@ -30,7 +30,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 export default function Page() {
-  const { name, email } = usePersonStore();
+  const { name, email , img } = usePersonStore();
 
   const { handleSubmit, control, formState: { errors }, setValue } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -98,6 +98,7 @@ export default function Page() {
                     placeholder="Enter your name"
                     focusBorderColor="gray.400"
                     {...field}
+                    value={name}
                   />
                 </InputGroup>
               )}
@@ -117,6 +118,7 @@ export default function Page() {
                     placeholder="Enter your email address"
                     focusBorderColor="gray.400"
                     {...field}
+                    value={email}
                   />
                 </InputGroup>
               )}
@@ -149,9 +151,9 @@ export default function Page() {
                 <IoKeyOutline />
               </InputRightElement>
               <Input
-                type="file"
+                type="text"
                 focusBorderColor="gray.400"
-                onChange={handleFileChange} 
+                value={img}
               />
             </InputGroup>
 
