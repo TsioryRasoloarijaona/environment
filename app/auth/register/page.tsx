@@ -24,19 +24,19 @@ const schema = z.object({
   name: z.string(),
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters long"),
-  img: z.string(),
+  image: z.string(),
   telephone: z.string()
 });
 
 type FormData = z.infer<typeof schema>;
 
 export default function Page() {
-  const { name, email , img } = usePersonStore();
+  const { name, email , image } = usePersonStore();
 
   useEffect(()=>{
     setValue("name", name)
     setValue("email", email)
-    setValue("img", img)
+    setValue("image", image)
   }, [])
   const { handleSubmit, control, formState: { errors }, setValue } = useForm<FormData>({
     resolver: zodResolver(schema),
@@ -46,26 +46,23 @@ export default function Page() {
     }
   });
 
-
   const onSubmit = async (data: FormData) => {
     try {
       console.log("Submitted Data:", data);
       console.log(process.env.baseUrl)
+      console.log(image)
+      
       const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("email", data.email);
+      formData.append("name", name);
+      formData.append("email", email);
       formData.append("password", data.password);
-      formData.append("img", img);
+      formData.append("image", image);
+      setValue("image", image)
       formData.append("telephone", data.telephone);
 
       const response = await post<FormData, { success: boolean, message: string }>({
         url: '/register',
         data,
-        config: {
-          headers: {
-            'Content-Type': 'multipart/form-data', 
-          },
-        },
       });
 
       console.log('Response:', response);

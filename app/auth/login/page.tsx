@@ -10,7 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import post from '@/app/helper/post/post';
 
 const schema = z.object({
-  email: z.string().email('Invalid email address'),
+  username: z.string().email('Invalid email address'),
   password: z.string().min(6, 'Password must be at least 6 characters long')
 });
 
@@ -28,11 +28,6 @@ export default function Page() {
       const response = await post<FormValues, { success: boolean, message: string }>({
         url: '/token', 
         data,
-        config: {
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        },
       });
 
       console.log('Response:', response);
@@ -52,7 +47,7 @@ export default function Page() {
             Please enter your credentials
           </p>
           <form onSubmit={handleSubmit(onSubmit)}>
-            <FormControl isInvalid={!!errors.email}>
+            <FormControl isInvalid={!!errors.username}>
               <FormLabel>Email</FormLabel>
               <InputGroup mb={6}>
                 <InputRightElement pointerEvents="none">
@@ -62,10 +57,10 @@ export default function Page() {
                   type="email"
                   placeholder="Enter your email address"
                   focusBorderColor="gray.400"
-                  {...register('email')}
+                  {...register('username')}
                 />
               </InputGroup>
-              {errors.email && <p className="text-red-500">{errors.email.message}</p>}
+              {errors.username && <p className="text-red-500">{errors.username.message}</p>}
             </FormControl>
             <FormControl isInvalid={!!errors.password}>
               <FormLabel>Password</FormLabel>

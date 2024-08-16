@@ -16,19 +16,19 @@ interface User {
 interface userState {
   name: string ;
   email: string ;
-  img : string
+  image : string
   updateName: (name: string) => void;
   updateEmail: (email: string) => void;
-  updateImg: (img: string) => void;
+  updateImg: (image: string) => void;
 }
 
 export const usePersonStore = create<userState>((set) => ({
   name: '',
   email: '',
-  img:'',
+  image:'',
   updateName: (name : string ) => set(() => ({ name : name })),
   updateEmail: (email : string ) => set(() => ({ email: email })),
-  updateImg: (img : string ) => set(() => ({ img: img  })),
+  updateImg: (image : string ) => set(() => ({ image: image  })),
 }))
 
 
