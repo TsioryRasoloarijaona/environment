@@ -6,6 +6,7 @@ import Image from "next/image";
 import Cards from "./components/cards/Cards";
 import { useEffect, useState } from "react";
 import Loader from "./components/loader/Loader";
+import TutorCarousel from "./components/Plant-carousel/Plant-Carousel";
  
 const content = [
   {
@@ -72,6 +73,7 @@ export default function Home() {
         <Header/>
         <Cards/>
         <StickyScroll content={content}/>
+        <TutorCarousel/>
         <Footer/>
       </main>
     </>
