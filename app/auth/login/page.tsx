@@ -1,35 +1,12 @@
 'use client'
-import {
-  HStack,
-  Box,
-  FormControl,
-  FormLabel,
-  Input,
-  InputLeftElement,
-  InputGroup,
-  InputRightElement,
-
-} from "@chakra-ui/react";
-import Image from "next/image";
-import React from "react";
-import { MdOutlineMailOutline } from "react-icons/md";
-import { IoKeyOutline } from "react-icons/io5";
-import { log } from "console";
+import React from 'react'
+import { Box , FormControl , FormLabel , InputGroup , InputRightElement , Input  } from '@chakra-ui/react'
+import { MdOutlineMailOutline  } from 'react-icons/md'
+import { IoKeyOutline } from 'react-icons/io5'
 
 export default function page() {
   return (
-    <div className=" w-screen h-screen">
-      <HStack>
-        <div className="relative w-full h-[90vh]">
-          <Image
-            src={"/login-pic.png"}
-            alt="svg"
-            layout="fill"
-            objectFit="cover"
-            className="absolute top-0 left-0"
-          ></Image>
-        </div>
-        <Box className="h-screen w-full bg-gray-primary">
+    <Box className="h-screen w-full bg-gray-primary">
           <div className="w-1/2 mx-auto h-full flex items-center">
             <div className="w-full">
               <h1 className="font-bold text-3xl w-full text-center">
@@ -59,7 +36,5 @@ export default function page() {
             </div>
           </div>
         </Box>
-      </HStack>
-    </div>
-  );
+  )
 }
