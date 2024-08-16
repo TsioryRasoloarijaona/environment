@@ -1,6 +1,6 @@
 'use client';
 
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   FormControl,
@@ -21,50 +21,48 @@ import { usePersonStore } from "@/app/components/buttons/GoogleAuth";
 import post from '@/app/helper/post/post';
 
 const schema = z.object({
-  name: z.string().nonempty("Name is required"),
+  name: z.string(),
   email: z.string().email("Invalid email address"),
   password: z.string().min(6, "Password must be at least 6 characters long"),
-  file: z.instanceof(File).optional() 
+  image: z.string(),
+  telephone: z.string()
 });
 
 type FormData = z.infer<typeof schema>;
 
 export default function Page() {
-  const { name, email , img } = usePersonStore();
+  const { name, email , image } = usePersonStore();
 
+  useEffect(()=>{
+    setValue("name", name)
+    setValue("email", email)
+    setValue("image", image)
+  }, [])
   const { handleSubmit, control, formState: { errors }, setValue } = useForm<FormData>({
     resolver: zodResolver(schema),
     defaultValues: {
       name,
-      email
+      email,
     }
   });
-
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    setValue("file", file); 
-  };
 
   const onSubmit = async (data: FormData) => {
     try {
       console.log("Submitted Data:", data);
-
+      console.log(process.env.baseUrl)
+      console.log(image)
+      
       const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("email", data.email);
+      formData.append("name", name);
+      formData.append("email", email);
       formData.append("password", data.password);
-      if (data.file) {
-        formData.append("file", data.file);
-      }
+      formData.append("image", image);
+      setValue("image", image)
+      formData.append("telephone", data.telephone);
 
       const response = await post<FormData, { success: boolean, message: string }>({
         url: '/register',
         data,
-        config: {
-          headers: {
-            'Content-Type': 'multipart/form-data', 
-          },
-        },
       });
 
       console.log('Response:', response);
@@ -125,6 +123,25 @@ export default function Page() {
             />
             <FormErrorMessage>{errors.email?.message}</FormErrorMessage>
 
+            <FormLabel>Phone number</FormLabel>
+            <Controller
+              name="telephone"
+              control={control}
+              render={({ field }) => (
+                <InputGroup mb={6}>
+                  <InputRightElement pointerEvents="none">
+                    <MdOutlineMailOutline />
+                  </InputRightElement>
+                  <Input
+                    placeholder="Enter your phone number"
+                    focusBorderColor="gray.400"
+                    {...field}
+                  />
+                </InputGroup>
+              )}
+            />
+            <FormErrorMessage>{errors.telephone?.message}</FormErrorMessage>
+
             <FormLabel>Password</FormLabel>
             <Controller
               name="password"
@@ -144,18 +161,6 @@ export default function Page() {
               )}
             />
             <FormErrorMessage>{errors.password?.message}</FormErrorMessage>
-
-            <FormLabel>Select file</FormLabel>
-            <InputGroup mb={6}>
-              <InputRightElement pointerEvents="none">
-                <IoKeyOutline />
-              </InputRightElement>
-              <Input
-                type="text"
-                focusBorderColor="gray.400"
-                value={img}
-              />
-            </InputGroup>
 
             <p className="text-xs text-right text-gray-400 mt-2 mb-9">
               Forgot password?
