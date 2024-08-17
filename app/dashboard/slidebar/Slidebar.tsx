@@ -36,11 +36,7 @@ export default function Slidebar() {
       icon: <FaMapLocationDot className="text-xl" />,
       path: "/dashboard/maps",
     },
-    {
-      name: "Data",
-      icon: <FaDatabase className="text-xl" />,
-      path: "/",
-    },
+
     {
       name: "Lougout",
       icon: <GrLogout className="text-xl" />,

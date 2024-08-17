@@ -10,8 +10,12 @@ import {
   StackDivider,
   Avatar,
 } from "@chakra-ui/react";
+import { User } from "@/app/interfaces/userInterface";
+import {get} from "@/app/helper/fecth/get"
 
-export default function Profile() {
+export default async function Profile({ id }: { id: string }) {
+  const user : User = await get('https://environment-pyv8.onrender.com/employee/'+id)
+  
   return (
     <Card>
       <CardHeader>
@@ -19,7 +23,7 @@ export default function Profile() {
           <Avatar
             size="xl"
             name="Christian Nwamba"
-            src="https://bit.ly/code-beast"
+            src={user.image}
           />
         </div>
       </CardHeader>
@@ -31,7 +35,7 @@ export default function Profile() {
               Name
             </Heading>
             <Text pt="2" fontSize="sm">
-              RASOLOARIJAONA Nahoma Fy tsiory
+              {user.name}
             </Text>
           </Box>
           <Box>
@@ -39,7 +43,7 @@ export default function Profile() {
               email
             </Heading>
             <Text pt="2" fontSize="sm">
-              hei.tsiory@gmail
+              {user.email}
             </Text>
           </Box>
           <Box>
@@ -55,7 +59,7 @@ export default function Profile() {
               total plantations
             </Heading>
             <Text pt="2" fontSize="sm">
-              200
+              {user.plantCount}
             </Text>
           </Box>
         </Stack>

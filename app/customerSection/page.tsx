@@ -1,13 +1,20 @@
-
+'use client'
 import React from "react";
 import Profile from "./profile/Profile";
-import Activities from "./activities/Activities";
 import NewActivities from "./newActivities/NewActivities";
-import Map from "../dashboard/maps/Map";
+import Activities from "./activities/Activities";
 import MapCustomer from "./map/MapCustomer";
 import Footer from "../components/Footer/Footer";
+import getDecodedId from "../hooks/getId";
+
 
 export default function page() {
+  /*  const token = localStorage.getItem('token');
+    const decodedToken: DecodedTokenInterface = jwtDecode(token || '');
+    const id = decodedToken.sub;*/
+ const id = getDecodedId()
+
+
   return (
     <>
       <div className="bg-gray-primary h-screen flex items-center">
@@ -17,7 +24,7 @@ export default function page() {
               <NewActivities />
             </div>
             <div>
-              <Profile />
+              <Profile id={id} />
             </div>
           </div>
           <div className="h-full space-y-4 overflow-y-auto w-full">

@@ -17,9 +17,8 @@ export default function page() {
           <ChartSix />
         </div>
         <div className="space-y-5">
-          <ChartTwo />
           <ChartFour />
-          <ChartTwo />
+
           <ChartFive />
         </div>
       </div>
