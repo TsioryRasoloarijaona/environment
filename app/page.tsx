@@ -6,7 +6,7 @@ import Image from "next/image";
 import Cards from "./components/cards/Cards";
 import { useEffect, useState } from "react";
 import Loader from "./components/loader/Loader";
-import TutorCarousel from "./components/Plant-carousel/Plant-Carousel";
+import TutorCarousel from "./components/carousel/Carousel";
  
 const content = [
   {

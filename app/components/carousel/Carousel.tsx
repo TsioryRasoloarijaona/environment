@@ -63,14 +63,14 @@ export default function TutorCarousel() {
         " https://i.pinimg.com/564x/7d/de/e9/7ddee97f0ff1e2382fe7acc49d690b90.jpg",
     },
     {
-      title: "Bambou",
-      text: "Le Bambou est une plante à croissance rapide qui joue un rôle important dans la prévention de l'érosion des sols et la régénération des terres dégradées. Il est également utilisé dans la construction, l’artisanat et comme source de nourriture.",
+      title: "Bamboo",
+      text: "Bamboo is a fast-growing plant that plays an important role in preventing soil erosion and regenerating degraded land. It is also used in construction, crafting and as a food source.",
       image:
         "https://i.pinimg.com/564x/dd/d6/e3/ddd6e3b8e9a9694ecdd96335021b2f53.jpg",
     },
     {
-      title: "Tamarinier",
-      text: "Le Tamarinier est un arbre fruitier dont les gousses sont utilisées en cuisine pour leur pulpe acidulée. Il contribue également à l'amélioration des sols grâce à ses racines profondes qui aèrent le sol.",
+      title: "Tamarind",
+      text: "The Tamarind tree is a fruit tree whose pods are used in cooking for their tangy pulp. It also contributes to soil improvement thanks to its deep roots which aerate the soil.",
       image:
         "https://i.pinimg.com/564x/4f/76/36/4f76366a069d6a55c99f297a9df14c1e.jpg",
     },
