@@ -1,11 +1,11 @@
 import { LineChart } from "../chartTypes/LineChart";
 const ChartThree: React.FC = () => {
     const data = {
-      labels: ["January", "February", "March", "April", "May", "June"],
+      labels: ["January", "February", "March", "April", "May", "June","july","august" , "september" , "october" , "november" , "december"],
       datasets: [
         {
           label: "Revenue",
-          data: [65, 59, 80, 81, 56, 55],
+          data: [0,0, 0, 0, 0, 0,0, 59, 0, 0, 0, 0],
           borderColor: "rgba(8,168,15, 0.5)",
           backgroundColor: "rgba(8,168,15, 0.5)",
         },

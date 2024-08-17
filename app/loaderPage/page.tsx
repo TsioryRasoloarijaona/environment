@@ -21,7 +21,7 @@ const token = localStorage.getItem("token")
     if (token) {
       try {
         const decoded: DecodedToken = jwtDecode(token);
-        if (decoded.scope === "admin") {
+        if (decoded.scope === "ROLE_admin") {
           router.push("/dashboard");
         } else if (decoded.scope === "employee") {
           router.push("/employeeSection");

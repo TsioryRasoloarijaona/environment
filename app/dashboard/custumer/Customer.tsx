@@ -25,7 +25,6 @@ export default async function Customer() {
             <Th>img</Th>
             <Th>Name</Th>
             <Th>Email</Th>
-            <Th>Region</Th>
             <Th>phone number</Th>
           </Tr>
         </Thead>

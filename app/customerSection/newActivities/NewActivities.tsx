@@ -67,8 +67,8 @@ export default function NewActivities() {
             <FormControl mt={4}>
               <FormLabel>tree Name</FormLabel>
               <Input
-                placeholder="Last name"
-                type="email"
+                placeholder="tree name"
+                type="text"
                 fontSize={"smaller"}
               />
             </FormControl>
@@ -77,7 +77,7 @@ export default function NewActivities() {
               <FormLabel>region</FormLabel>
               <Input
                 placeholder="Last name"
-                type="email"
+                type="text"
                 fontSize={"smaller"}
               />
             </FormControl>
