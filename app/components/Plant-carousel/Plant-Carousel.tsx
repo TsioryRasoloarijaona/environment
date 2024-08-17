@@ -124,7 +124,7 @@ export default function TutorCarousel() {
 
       <Slider {...settings} ref={(slider) => setSlider(slider)}>
         {cards.map((card, index) => (
-          <Box key={index} height={"6xl"} position="relative">
+          <Box key={index} height={"6xl"} position="relative" id="tutor">
             <Container
               size="container"
               height="600px"

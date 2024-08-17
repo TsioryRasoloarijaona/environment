@@ -18,8 +18,7 @@ import {
   PopoverCloseButton,
   PopoverHeader,
   PopoverBody,
-  Input,
-  Image,Link as ChakraLink 
+  Input,Link as ChakraLink 
 } from '@chakra-ui/react';
 import { FaHeart } from 'react-icons/fa';
 import { SearchIcon } from '@chakra-ui/icons';
@@ -28,7 +27,8 @@ import { motion } from 'framer-motion';
 import { FaUserCircle } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
-
+import LogoImg from "../../../../public/logo-app.png"
+import Image from "next/image";
 const MotionBox = motion(Box);
 
 import { useEffect } from 'react';
@@ -103,7 +103,7 @@ const WithSubnavigation: React.FC<WithSubnavigationProps> = ({ isFixed, cart }) 
               </Flex>
               <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
                   <Box>
-                      <Text>Logo</Text>
+                  <Image src={LogoImg} className="w-[6rem] pb-2" alt='' onClick={() => scrollToElement("home")} />
                   </Box>
 
                   <Flex display={{ base: 'none', md: 'flex' }} marginInline="auto">
@@ -395,12 +395,12 @@ const NAV_ITEMS: NavItem[] = [
       link: 'about',
   },
   {
-      label: 'Product',
-      link: 'products',
+      label: 'Popularization',
+      link: 'popularization',
   },
   {
-      label: 'Contact',
-      link: 'contact',
+      label: 'Tutor',
+      link: 'tutor',
   },
 ];
 
