@@ -48,7 +48,7 @@ export default function Slidebar() {
     <div className="w-full h-screen bg-gray-900">
       <div className="pt-20 mx-auto w-fit">
         <div>
-          <Image src={"/logo-app.png"} width={200} height={200} alt="png" />
+          <Image src={"/logo.png"} width={200} height={200} alt="png" />
         </div>
       </div>
       <div className="mx-auto mt-9 space-y-5">

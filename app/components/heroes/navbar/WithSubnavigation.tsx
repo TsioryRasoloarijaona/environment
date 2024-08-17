@@ -27,7 +27,7 @@ import { motion } from 'framer-motion';
 import { FaUserCircle } from 'react-icons/fa';
 import Link from 'next/link';
 import { useRouter } from "next/navigation";
-import LogoImg from "../../../../public/logo-app.png"
+import LogoImg from "../../../../public/logo.png"
 import Image from "next/image";
 const MotionBox = motion(Box);
 
@@ -103,7 +103,7 @@ const WithSubnavigation: React.FC<WithSubnavigationProps> = ({ isFixed, cart }) 
               </Flex>
               <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
                   <Box>
-                  <Image src={LogoImg} className="w-[6rem] pb-2" alt='' onClick={() => scrollToElement("home")} />
+                  <Image src={LogoImg} className="w-[9rem] pb-2" alt='' onClick={() => scrollToElement("home")} />
                   </Box>
 
                   <Flex display={{ base: 'none', md: 'flex' }} marginInline="auto">
