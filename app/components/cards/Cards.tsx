@@ -27,7 +27,7 @@ const cardData = [
 const Cards =() => {
     return (
       <>
-        <Box w="80vw" mx="auto" py="16">
+        <Box w="80vw" mx="auto" py="16" id="about">
       <SimpleGrid
         columns={{ base: 1, sm: 1, md: 2, lg: 3 }} 
         spacing={8}
