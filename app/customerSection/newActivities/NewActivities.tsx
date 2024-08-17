@@ -93,7 +93,7 @@ export default function NewActivities() {
           </div>
 
           <Button
-            className="px-3 py-1 bg-green-btn text-white rounded-md mt-4"
+            className="px-3 py-1 bg-green-400 text-white rounded-md mt-4"
             onClick={handlePosition}
           >
             Locate me
@@ -169,14 +169,14 @@ export default function NewActivities() {
               />
               {errors.picture && (
                 <FormErrorMessage>
-                "error"
+                error
               </FormErrorMessage>
               )}
             </FormControl>
 
             <Button
               type="submit"
-              className="w-full bg-green-btn py-2 mt-6 rounded-md text-white"
+              className="w-full bg-green-btn text-white mt-4"
             >
               Save
             </Button>
