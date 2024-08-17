@@ -9,9 +9,7 @@ import getDecodedId from "../hooks/getId";
 
 
 export default function page() {
-  /*  const token = localStorage.getItem('token');
-    const decodedToken: DecodedTokenInterface = jwtDecode(token || '');
-    const id = decodedToken.sub;*/
+
  const id = getDecodedId()
 
 
