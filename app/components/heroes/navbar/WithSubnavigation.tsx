@@ -154,7 +154,7 @@ const WithSubnavigation: React.FC<WithSubnavigationProps> = ({ isFixed, cart }) 
                               <PopoverCloseButton />
                               <PopoverHeader>Your like</PopoverHeader>
                               <PopoverBody>
-                                  <Text>Product you've liked</Text>
+                                  <Text>Product you have liked</Text>
                               </PopoverBody>
                           </PopoverContent>
                       </Popover>

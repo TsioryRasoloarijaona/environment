@@ -4,18 +4,17 @@ import { Box } from "@chakra-ui/react";
 import Loader from "../components/loader/Loader";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import {jwtDecode} from "jwt-decode"; 
+import { jwtDecode } from "jwt-decode";
 
 interface DecodedToken {
   scope: string;
 }
 
-
 export default function LoaderPage() {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-const token = localStorage.getItem("token")
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     if (token) {
@@ -30,7 +29,7 @@ const token = localStorage.getItem("token")
         }
       } catch (error) {
         console.error("Invalid token:", error);
-        router.push("/"); 
+        router.push("/");
       }
     } else {
       router.push("/");
