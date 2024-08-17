@@ -6,7 +6,11 @@ import Activities from "./activities/Activities";
 import MapCustomer from "./map/MapCustomer";
 import Footer from "../components/Footer/Footer";
 import getDecodedId from "../hooks/getId";
-import Map from "../dashboard/maps/Map";
+import dynamic from "next/dynamic";
+
+const Map = dynamic(() => import("@/app/dashboard/maps/Map"), {
+    ssr: false,
+  });
 
 export default function page() {
   const id = getDecodedId();
@@ -24,7 +28,7 @@ export default function page() {
             </div>
           </div>
           <div className="h-full space-y-4 overflow-y-auto w-full">
-            <div>
+            <div className="relative">
               <Map />
             </div>
             <div className=" ">
