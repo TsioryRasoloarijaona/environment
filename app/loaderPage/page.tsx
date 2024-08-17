@@ -17,6 +17,7 @@ export default function LoaderPage() {
   const token = localStorage.getItem("token");
 
   useEffect(() => {
+
     if (token) {
       try {
         const decoded: DecodedToken = jwtDecode(token);
@@ -34,8 +35,7 @@ export default function LoaderPage() {
     } else {
       router.push("/");
     }
-  }, [token, router]);
-
+  }, [router]); 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
