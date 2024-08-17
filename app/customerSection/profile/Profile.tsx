@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState , useEffect } from "react";
+import axios from "axios";
 import {
   Card,
   CardHeader,
@@ -9,12 +10,31 @@ import {
   Text,
   StackDivider,
   Avatar,
+  
 } from "@chakra-ui/react";
 import { User } from "@/app/interfaces/userInterface";
-import {get} from "@/app/helper/fecth/get"
 
-export default async function Profile({ id }: { id: string }) {
-  const user : User = await get('https://environment-pyv8.onrender.com/employee/'+id)
+
+
+export default function Profile({ id }: { id: string }) {
+ 
+  const [user, setUser] = useState<User>();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get<User>(`https://environment-pyv8.onrender.com/employee/${id}`);
+        setUser(response.data);
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, [id]);
   
   return (
     <Card>
@@ -23,7 +43,7 @@ export default async function Profile({ id }: { id: string }) {
           <Avatar
             size="xl"
             name="Christian Nwamba"
-            src={user.image}
+            src={user?.image}
           />
         </div>
       </CardHeader>
@@ -35,7 +55,7 @@ export default async function Profile({ id }: { id: string }) {
               Name
             </Heading>
             <Text pt="2" fontSize="sm">
-              {user.name}
+              {user?.name}
             </Text>
           </Box>
           <Box>
@@ -43,7 +63,7 @@ export default async function Profile({ id }: { id: string }) {
               email
             </Heading>
             <Text pt="2" fontSize="sm">
-              {user.email}
+              {user?.email}
             </Text>
           </Box>
           <Box>
@@ -59,7 +79,7 @@ export default async function Profile({ id }: { id: string }) {
               total plantations
             </Heading>
             <Text pt="2" fontSize="sm">
-              {user.plantCount}
+              {user?.plantCount}
             </Text>
           </Box>
         </Stack>

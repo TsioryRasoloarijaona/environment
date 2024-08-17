@@ -4,38 +4,41 @@ import { Box } from "@chakra-ui/react";
 import Loader from "../components/loader/Loader";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import {jwtDecode} from "jwt-decode"; 
+import { jwtDecode } from "jwt-decode";
 
 interface DecodedToken {
   scope: string;
 }
 
-
 export default function LoaderPage() {
+  const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-const token = localStorage.getItem("token")
-
   useEffect(() => {
-    if (token) {
-      try {
-        const decoded: DecodedToken = jwtDecode(token);
-        if (decoded.scope === "ROLE_admin") {
-          router.push("/dashboard");
-        } else if (decoded.scope === "ROLE_employee") {
-          router.push("/employeeSection");
-        } else {
-          router.push("/customerSection");
+    setIsClient(true); 
+
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const decoded: DecodedToken = jwtDecode(token);
+          if (decoded.scope === "ROLE_admin") {
+            router.push("/dashboard");
+          } else if (decoded.scope === "ROLE_employee") {
+            router.push("/employeeSection");
+          } else {
+            router.push("/customerSection");
+          }
+        } catch (error) {
+          console.error("Invalid token:", error);
+          router.push("/");
         }
-      } catch (error) {
-        console.error("Invalid token:", error);
-        router.push("/"); 
+      } else {
+        router.push("/");
       }
-    } else {
-      router.push("/");
     }
-  }, [token, router]);
+  }, [router]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -44,9 +47,14 @@ const token = localStorage.getItem("token")
     return () => clearTimeout(timer);
   }, []);
 
+  if (!isClient) {
+    return null; 
+  }
+
   return (
     <Box>
       <Loader isLoading={isLoading} />
     </Box>
   );
 }
+

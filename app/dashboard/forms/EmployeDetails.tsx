@@ -38,7 +38,7 @@ export default async function EmployeDetails() {
         </Thead>
         <Tbody>
           {employe.map((el, index) => (
-            <Tr>
+            <Tr key={index}>
               <Td>
                 <WrapItem>
                   <Avatar
