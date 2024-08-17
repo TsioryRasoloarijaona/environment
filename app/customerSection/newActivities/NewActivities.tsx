@@ -169,7 +169,7 @@ export default function NewActivities() {
               />
               {errors.picture && (
                 <FormErrorMessage>
-                "error"
+                error
               </FormErrorMessage>
               )}
             </FormControl>
