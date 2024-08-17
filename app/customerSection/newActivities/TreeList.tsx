@@ -1,7 +1,7 @@
 "use client"
 import React from "react";
 import { Menu, MenuList, MenuItem, MenuButton } from "@chakra-ui/react";
-
+import { Tree } from "./FetchList";
 import { create } from 'zustand'
 
 interface TypeState {
@@ -15,16 +15,19 @@ interface TypeState {
     updateType: (newType : string) => set({ type: newType }),
   }));
 
-export default function TreeList({list} : {list : string[]}) {
+export default function TreeList({list} : {list : Tree[] }) {
     const {type , updateType  } = useStoreTypeTree((state) => ({
        type : state.type,
        updateType : state.updateType
       }));
+      console.log(list)
   return (
     <>
       {list.map((el, index) => (
-        <MenuItem onClick={()=> updateType(el)} key={index}>{el}</MenuItem>
+        <MenuItem onClick={()=> updateType(el.type)} key={index}>{el.type}</MenuItem>
+        
       ))}
+      
     </>
   );
 }
