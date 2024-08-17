@@ -1,9 +1,10 @@
-import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Divider, Heading, Stack, StackDivider, Text } from "@chakra-ui/react"
+import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Divider, Heading, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger, Stack, StackDivider, Text } from "@chakra-ui/react"
 import Image from "next/image";
+import PasswordForm from "../editPassword/passwordForm";
 
 const DetailsCard = () => {
     return (
-        <Card width='50%' alignItems='center'>
+        <Card width='50%' alignContent='center'>
             <CardHeader>
                 <div className="">
                     <Avatar
@@ -34,18 +35,29 @@ const DetailsCard = () => {
                     </Box>
                     <Box>
                         <Heading size="xs" textTransform="uppercase">
-                            REGION
+                            Telephone
                         </Heading>
                         <Text pt="2" fontSize="sm">
-                            Menabe
+                            0346985214
                         </Text>
                     </Box>
-                    <button
-                        className="w-full text-center bg-green-btn py-3 font-bold text-white rounded-md"
-                        type="submit"
-                    >Edit</button>
                 </Stack>
             </CardBody>
+            <CardFooter>
+                <Popover>
+                    <PopoverTrigger>
+                        <button
+                            className="w-full text-center bg-green-btn py-3 font-bold text-white rounded-md"
+                        >Edit</button>
+                    </PopoverTrigger>
+                    <PopoverContent className="bg-gray-primary">
+                        <PopoverArrow />
+                        <PopoverCloseButton />
+                        <PopoverHeader fontSize='large'>Change Password</PopoverHeader>
+                        <PopoverBody><PasswordForm/></PopoverBody>
+                    </PopoverContent>
+                </Popover>
+            </CardFooter>
         </Card>
     );
 }

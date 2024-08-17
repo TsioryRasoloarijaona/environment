@@ -7,13 +7,14 @@ import {
   Stack,
   IconButton,
   HStack,
+  Textarea,
+  Button
 } from "@chakra-ui/react";
 import { FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   return (
     <Box
-      
       color="gray.200"
       py={10}
       px={{ base: 5, md: 20 }}
@@ -113,6 +114,15 @@ const Footer = () => {
               _hover={{ bg: "green.300", color: "white" }}
             />
           </HStack>
+          <Stack spacing={2}>
+            <Text fontWeight="bold" fontSize="lg" color="white">
+              Newsletter
+            </Text>
+            <Textarea placeholder="Write a news message..." />
+            <Button colorScheme="green" size="lg">
+              Send
+            </Button>
+          </Stack>
         </Stack>
       </Flex>
 
