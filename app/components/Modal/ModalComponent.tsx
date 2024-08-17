@@ -1,6 +1,6 @@
 "use client";
 
-import React from 'react';
+import React, { useState } from 'react';
 import { IoMdAdd } from 'react-icons/io';
 import {
   Modal,
@@ -37,6 +37,8 @@ type FormData = z.infer<typeof schema>;
 
 export default function ModalComponent() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+  const [file, setFile] = useState<FileList | null>(null);
+
 
   const {
     register,
@@ -47,8 +49,52 @@ export default function ModalComponent() {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Form Data:", data);
+  const onSubmit = async (data: FormData) => {
+    const url=process.env.baseUrl
+    const formDT=new FormData()
+    if(file){
+      formDT.append("image",file[0])
+      data.picture=file[0]
+    }
+    const employeeToSave={
+      "name":data.name,
+      "email":data.email,
+      "role":"employee",
+      "telephone":data.tel
+    }
+   // console.log(data.picture+"io ");
+    
+    // Convertir l'objet JSON en chaîne JSON
+    const jsonString = JSON.stringify(employeeToSave);
+
+  // Créer un Blob à partir de la chaîne JSON
+  const jsonBlob = newBlob([jsonString], { type: 'application/json' });
+  formDT.append("employee", jsonBlob, "employee.json");
+    
+    
+    try {
+      
+      const response = await fetch('https://environment-pyv8.onrender.com/create/employee', {
+        method: 'POST',
+        body: formDT,
+       
+       
+      
+      });
+      if (response.ok) {
+        console.log('Employee created successfully');
+        onClose();
+        reset();
+      } else {
+        console.error('Error creating employee:', response);
+      }
+     
+  
+     
+    } catch (error) {
+      console.error('Fetch error:', error);
+    }
+  
     onClose();
     reset();
   };
@@ -109,6 +155,7 @@ export default function ModalComponent() {
                   type="text"
                   fontSize={'smaller'}
                   {...register('tel')}
+                  
                 />
                 {errors.tel && (
                   <FormErrorMessage>{errors.tel.message}</FormErrorMessage>
@@ -122,6 +169,15 @@ export default function ModalComponent() {
                   type="file"
                   fontSize={'smaller'}
                   {...register('picture')}
+                  onChange={(e)=>{
+                    const file=e.target.files
+                    if (e.target.files) {
+                      setFile(e.target.files); // Met à jour l'état avec le FileList
+                    } else {
+                      setFile(null);
+                    }
+                  }}
+          
                 />
                 {errors.picture && (
                   <FormErrorMessage>
@@ -148,3 +204,11 @@ export default function ModalComponent() {
     </>
   );
 }
+function awaitfetch(arg0: string, arg1: { method: string; body: globalThis.FormData; }) {
+  throw new Error('Function not implemented.');
+}
+
+function newBlob(arg0: string[], arg1: { type: string; }): Blob {
+  return new Blob(arg0, arg1);
+}
+
