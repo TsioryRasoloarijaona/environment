@@ -11,30 +11,34 @@ interface DecodedToken {
 }
 
 export default function LoaderPage() {
+  const [isClient, setIsClient] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-  const token = localStorage.getItem("token");
-
   useEffect(() => {
-    if (token) {
-      try {
-        const decoded: DecodedToken = jwtDecode(token);
-        if (decoded.scope === "ROLE_admin") {
-          router.push("/dashboard");
-        } else if (decoded.scope === "employee") {
-          router.push("/employeeSection");
-        } else {
-          router.push("/customerSection");
+    setIsClient(true); 
+
+    if (typeof window !== "undefined") {
+      const token = localStorage.getItem("token");
+      if (token) {
+        try {
+          const decoded: DecodedToken = jwtDecode(token);
+          if (decoded.scope === "ROLE_admin") {
+            router.push("/dashboard");
+          } else if (decoded.scope === "employee") {
+            router.push("/employeeSection");
+          } else {
+            router.push("/customerSection");
+          }
+        } catch (error) {
+          console.error("Invalid token:", error);
+          router.push("/");
         }
-      } catch (error) {
-        console.error("Invalid token:", error);
+      } else {
         router.push("/");
       }
-    } else {
-      router.push("/");
     }
-  }, [token, router]);
+  }, [router]);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -43,9 +47,14 @@ export default function LoaderPage() {
     return () => clearTimeout(timer);
   }, []);
 
+  if (!isClient) {
+    return null; 
+  }
+
   return (
     <Box>
       <Loader isLoading={isLoading} />
     </Box>
   );
 }
+

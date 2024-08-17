@@ -1,19 +1,24 @@
 "use client";
-import React from "react";
-import Profile from "./profile/Profile";
-import NewActivities from "./newActivities/NewActivities";
-import Activities from "./activities/Activities";
-import MapCustomer from "./map/MapCustomer";
+import React, { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
 import Footer from "../components/Footer/Footer";
 import getDecodedId from "../hooks/getId";
-import dynamic from "next/dynamic";
 
-const Map = dynamic(() => import("@/app/dashboard/maps/Map"), {
-    ssr: false,
-  });
+const Profile = dynamic(() => import("./profile/Profile"), { ssr: false });
+const NewActivities = dynamic(() => import("./newActivities/NewActivities"), { ssr: false });
+const Activities = dynamic(() => import("./activities/Activities"), { ssr: false });
+const MapCustomer = dynamic(() => import("./map/MapCustomer"), { ssr: false });
+const Map = dynamic(() => import("@/app/dashboard/maps/Map"), { ssr: false });
 
-export default function page() {
-  const id = getDecodedId();
+export default function Page() {
+  const [id, setId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const decodedId = getDecodedId(); 
+      setId(decodedId);
+    }
+  }, []);
 
   return (
     <>
@@ -24,26 +29,14 @@ export default function page() {
               <NewActivities />
             </div>
             <div>
-              <Profile id={id} />
+              {id && <Profile id={id} />}
             </div>
           </div>
           <div className="h-full space-y-4 overflow-y-auto w-full">
             <div className="relative">
               <Map />
             </div>
-            <div className=" ">
-              <Activities />
-            </div>
-            <div className=" ">
-              <Activities />
-            </div>
-            <div className=" ">
-              <Activities />
-            </div>
-            <div className="">
-              <Activities />
-            </div>
-            <div className="">
+            <div>
               <Activities />
             </div>
           </div>
