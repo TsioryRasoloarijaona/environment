@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect } from "react";
 import {
   Card,
@@ -17,13 +15,13 @@ import {
   Button,
   FormErrorMessage,
 } from "@chakra-ui/react";
-import TreeList from "./TreeList";
 import FetchList from "./FetchList";
-import { useStoreTypeTree } from "./TreeList";
 import { getCoordinates } from "@/app/dashboard/maps/Map";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from 'axios';
+import {jwtDecode} from 'jwt-decode';
 
 const schema = z.object({
   treeType: z.string().nonempty("Tree type is required"),
@@ -32,19 +30,19 @@ const schema = z.object({
   lat: z.string(),
   lng: z.string(),
   picture: z
-    .any()
-    .refine((files) => files instanceof FileList && files.length > 0, {
+    .instanceof(FileList)
+    .refine((files) => files.length > 0, {
       message: "File is required",
     })
-    .optional(), 
+    .optional(),
 });
 
 type FormData = z.infer<typeof schema>;
 
 export default function NewActivities() {
-  const { type } = useStoreTypeTree();
-  const [lat, setLat] = useState<string>();
-  const [lng, setLng] = useState<string>();
+  const [lat, setLat] = useState<string>("");
+  const [lng, setLng] = useState<string>("");
+  const [treeTypeId, setTreeTypeId] = useState<string>("");
 
   const {
     register,
@@ -57,22 +55,79 @@ export default function NewActivities() {
   });
 
   useEffect(() => {
-    setValue("treeType", type);
-  }, [type, setValue]);
+    setValue("lat", lat ?? "");
+    setValue("lng", lng ?? "");
+  }, [lat, lng, setValue]);
 
   const handlePosition = async () => {
     const coords = await getCoordinates();
     if (coords) {
       setLat(coords.latitude.toString());
       setLng(coords.longitude.toString());
-      setValue("lat", coords.latitude.toString());
-      setValue("lng", coords.longitude.toString());
     }
   };
 
-  const onSubmit = (data: FormData) => {
-    console.log("Form Data:", data);
-    reset(); 
+  const onTreeTypeSelect = (id: string) => {
+    setTreeTypeId(id);
+    setValue("treeType", id);
+  };
+
+  const onSubmit = async (data: FormData) => {
+    const formData = new FormData();
+    const token = localStorage.getItem('token');
+    let idUser = '';
+
+    if (token) {
+      try {
+        const decoded: any = jwtDecode(token);
+        idUser = decoded.sub;
+      } catch (error) {
+        console.error("Error decoding token:", error);
+      }
+    }
+
+    // Créer un objet JSON pour les plantes
+    const plantsData = [{
+      date: new Date().toISOString().split('T')[0],
+      name: data.treeName,
+      idUser: idUser,
+      location: {
+        test: "test",
+        latitude: parseFloat(data.lat),
+        longitude: parseFloat(data.lng),
+      },
+      idTreeType: treeTypeId,
+    }];
+
+    // Convertir l'objet JSON en chaîne JSON
+    const jsonString = JSON.stringify(plantsData);
+
+    // Créer un Blob à partir de la chaîne JSON
+    const jsonBlob = new Blob([jsonString], { type: 'application/json' });
+
+    // Ajouter le Blob et le fichier au FormData
+    formData.append("plants", jsonBlob);
+    if (data.picture && data.picture.length > 0) {
+      formData.append("images", data.picture[0]);
+    }
+
+    try {
+      const response = await axios.post(
+        'https://environment-pyv8.onrender.com/plants/save',
+        formData,
+        {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            'Accept': 'application/json',
+          },
+        }
+      );
+      console.log("Server Response:", response.data);
+    } catch (error) {
+      console.error("Error submitting form:",error);
+    }
+
+    reset();
   };
 
   return (
@@ -87,7 +142,7 @@ export default function NewActivities() {
             <Menu isLazy>
               <MenuButton fontSize={"small"}>Choose a type of tree</MenuButton>
               <MenuList>
-                <FetchList />
+                <FetchList onTreeTypeSelect={onTreeTypeSelect} />
               </MenuList>
             </Menu>
           </div>
@@ -107,6 +162,8 @@ export default function NewActivities() {
                 type="text"
                 fontSize={"smaller"}
                 {...register("treeType")}
+                value={treeTypeId}
+                readOnly
               />
               {errors.treeType && (
                 <FormErrorMessage>{errors.treeType.message}</FormErrorMessage>
@@ -169,8 +226,8 @@ export default function NewActivities() {
               />
               {errors.picture && (
                 <FormErrorMessage>
-                error
-              </FormErrorMessage>
+                  {errors.picture.message}
+                </FormErrorMessage>
               )}
             </FormControl>
 

@@ -8,7 +8,11 @@ export interface Tree {
   type: string;
 }
 
-export default function FetchList() {
+interface FetchListProps {
+  onTreeTypeSelect: (id: string) => void;
+}
+
+export default function FetchList({ onTreeTypeSelect }: FetchListProps) {
   const [listTree, setListTree] = useState<Tree[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -27,13 +31,15 @@ export default function FetchList() {
     fetchTrees();
   }, []);
 
+  const handleSelect = (id: string) => {
+    onTreeTypeSelect(id);
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
 
   return (
-    <>
-      <TreeList list={listTree} />
-    </>
+    <TreeList list={listTree} onSelect={handleSelect} />
   );
 }
