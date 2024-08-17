@@ -1,5 +1,4 @@
 import { Button, Card, CardBody, CardFooter, Heading, Image, Stack, Text } from "@chakra-ui/react";
-import NotificationCard from "./notificationCard";
 
 const WelcomeCard = () => {
     return (
@@ -9,7 +8,6 @@ const WelcomeCard = () => {
         bgSize='cover' >
             <CardBody alignItems='center' mt='5'>
                 <Heading size='xl' color='white'>Here is your employee space. View all your informations</Heading>
-                <NotificationCard/>
             </CardBody>
         </Card>
     )
