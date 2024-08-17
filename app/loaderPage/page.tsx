@@ -10,14 +10,13 @@ interface DecodedToken {
   scope: string;
 }
 
-
 export default function LoaderPage() {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
 
-const token = localStorage.getItem("token")
-
   useEffect(() => {
+    const token = localStorage.getItem("token");
+
     if (token) {
       try {
         const decoded: DecodedToken = jwtDecode(token);
@@ -35,8 +34,7 @@ const token = localStorage.getItem("token")
     } else {
       router.push("/");
     }
-  }, [token, router]);
-
+  }, [router]); 
   useEffect(() => {
     const timer = setTimeout(() => {
       setIsLoading(false);
