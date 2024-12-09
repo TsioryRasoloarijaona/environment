@@ -9,7 +9,7 @@ export default function page() {
             <Box>
                 <Flex className=" p-4" gap='6'>
                     <WelcomeCard />
-                    <DetailsCard />
+                    <DetailsCard/>
                 </Flex>
                 <Box mt='3'>
                     <Heading size="xl" ml='35%' my='3'>Activities in your area</Heading>

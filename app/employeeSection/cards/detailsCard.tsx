@@ -1,8 +1,36 @@
+"use client"
+
 import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Divider, Heading, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverHeader, PopoverTrigger, Stack, StackDivider, Text } from "@chakra-ui/react"
 import Image from "next/image";
 import PasswordForm from "../editPassword/passwordForm";
+import getDecodedId from "@/app/hooks/getId";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+interface Employee {
+    id: string,
+    name: string,
+    email: string,
+    telephone: string,
+    image: string
+}
 
 const DetailsCard = () => {
+    const [employee, setEmployee] = useState<Employee>();
+    const id = getDecodedId()
+
+    useEffect(() => {
+        const fetchTrees = async () => {
+          try {
+            const response = await axios.get<Employee>('https://environment-pyv8.onrender.com/employee/'+id);
+            setEmployee(response.data);
+          } catch (error) {
+            console.error('Error fetching tree data:', error);
+          }
+        };
+    
+        fetchTrees();
+      }, []);
     return (
         <Card width='50%' alignContent='center'>
             <CardHeader>
@@ -10,7 +38,7 @@ const DetailsCard = () => {
                     <Avatar
                         size="xl"
                         name="Christian Nwamba"
-                        src="https://bit.ly/code-beast"
+                        src={employee?.image}
                     />
                 </div>
             </CardHeader>
@@ -22,15 +50,15 @@ const DetailsCard = () => {
                             Name
                         </Heading>
                         <Text pt="2" fontSize="sm">
-                            RASOLOARIJAONA Nahoma Fy tsiory
+                            {employee?.name}
                         </Text>
                     </Box>
                     <Box>
                         <Heading size="xs" textTransform="uppercase">
-                            email
+                            Email
                         </Heading>
                         <Text pt="2" fontSize="sm">
-                            hei.tsiory@gmail
+                            {employee?.email}
                         </Text>
                     </Box>
                     <Box>
@@ -38,7 +66,7 @@ const DetailsCard = () => {
                             Telephone
                         </Heading>
                         <Text pt="2" fontSize="sm">
-                            0346985214
+                           {employee?.telephone}
                         </Text>
                     </Box>
                 </Stack>

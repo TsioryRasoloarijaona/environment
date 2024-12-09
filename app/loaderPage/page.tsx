@@ -25,7 +25,7 @@ export default function LoaderPage() {
           const decoded: DecodedToken = jwtDecode(token);
           if (decoded.scope === "ROLE_admin") {
             router.push("/dashboard");
-          } else if (decoded.scope === "employee") {
+          } else if (decoded.scope === "ROLE_employee") {
             router.push("/employeeSection");
           } else {
             router.push("/customerSection");
